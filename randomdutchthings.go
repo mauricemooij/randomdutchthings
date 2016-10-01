@@ -110,7 +110,7 @@ func RandomStreet() string {
     }
 
     fourthNumber := ""
-    if thirdNumber != "" && rand.Intn(500) == 1 {
+    if thirdNumber != "" && rand.Intn(100) == 1 {
         fourthNumber = randNumberRunes(1, true) 
     }
 
@@ -121,4 +121,26 @@ func RandomStreet() string {
 
     return strings.TrimSpace(street + " " + firstNumber + secondNumber + thirdNumber + fourthNumber + addition)
 }
+
+func RandomInitials() string {
+
+    n := 1
+    switch rand.Intn(11) {
+        case 1, 2, 3, 4:
+            n = 2
+        case 5, 6:
+            n = 3
+        case 7:
+            n = 4
+    }
+
+    letters := randStringRunes(n)
+    initials := ""
+    for i := 0; i < len(letters); i++ {
+        initials += string(letters[i]) + "."
+    }
+    return initials
+}
+
+//RandomStreetName, RandomStreetNumber, RandomStreetNumberAddition, RandomDate
 

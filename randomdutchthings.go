@@ -16,6 +16,8 @@ var numberRunesWithoutZero = []rune("123456789")
 
 var numberRunes = []rune("0123456789")
 
+var additionList =  []string{"A", "B", "C", "D", "-1", "-2"}
+
 func checkErr(err error) {
     if err != nil {
         panic(err)
@@ -33,7 +35,6 @@ func randStringRunes(n int) string {
     }
     return string(b)
 }
-
 
 func randNumberRunes(n int, includeZeros bool) string {
     r := numberRunes
@@ -104,15 +105,20 @@ func RandomStreet() string {
     } 
 
     thirdNumber := ""
-    if rand.Intn(4) == 1 {
+    if secondNumber != "" && rand.Intn(4) == 1 {
         thirdNumber = randNumberRunes(1, true) 
     }
 
     fourthNumber := ""
-    if rand.Intn(500) == 1 {
+    if thirdNumber != "" && rand.Intn(500) == 1 {
         fourthNumber = randNumberRunes(1, true) 
-    }    
+    }
 
-    return strings.TrimSpace(street + " " + firstNumber + secondNumber + thirdNumber + fourthNumber)
+    addition := ""    
+    if rand.Intn(10) == 1 {
+        addition = additionList[rand.Intn(len(additionList))]
+    }
+
+    return strings.TrimSpace(street + " " + firstNumber + secondNumber + thirdNumber + fourthNumber + addition)
 }
 
